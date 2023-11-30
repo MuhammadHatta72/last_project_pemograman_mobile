@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:last_project_pemograman_mobile/components/bottom_nav.dart';
-import '/pages/scan.dart';
-import '/pages/dashboard.dart';
-import '/pages/users.dart';
+import 'package:last_project_pemograman_mobile/models/ktps.dart';
+
 
 class UserPage extends StatelessWidget {
-  const UserPage({Key? key}) : super(key: key);
+  final KTPs data;
+  const UserPage({
+    Key? key,
+    required this.data,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -106,11 +109,8 @@ class UserPage extends StatelessWidget {
                       height: 450,
                       child: ListView(
                         children: [
-                          DetailUserItem(title: 'Nama', content: 'John Doe'),
-                          DetailUserItem(title: 'Jenis Kelamin', content: 'Laki-laki'),
-                          DetailUserItem(title: 'Agama', content: 'Islam'),
-                          DetailUserItem(title: 'Tempat Lahir', content: 'Jakarta'),
-                          DetailUserItem(title: 'Status Perkawinan', content: 'Belum Menikah'),
+                          DetailUserItem(title: 'Nama', content: data.nama),
+                          DetailUserItem(title: 'NIK', content: data.nik),
                         ],
                       ),
                     ),

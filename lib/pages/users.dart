@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:last_project_pemograman_mobile/components/bottom_nav.dart';
-import '/pages/user.dart';
-import '/pages/scan.dart';
-import '/pages/dashboard.dart';
+import 'package:last_project_pemograman_mobile/data/ktp_data.dart';
+import 'package:last_project_pemograman_mobile/pages/user.dart';
+import 'package:provider/provider.dart';
+
 
 class UsersPage extends StatelessWidget {
   const UsersPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Consumer<KTPData>(
+      builder: (context, value, child) => Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false, // Menghapus tombol kembali
         backgroundColor: Color(0xFF79B3B7), // Warna latar belakang AppBar
@@ -105,7 +107,7 @@ class UsersPage extends StatelessWidget {
                     SizedBox(
                       height: 450,
                       child: ListView.builder(
-                        itemCount: 10,
+                        itemCount: value.getAllKTPS().length,
                         itemBuilder: (context, index) {
                           return Padding(
                             padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
@@ -127,12 +129,19 @@ class UsersPage extends StatelessWidget {
                                     ),
                                   ),
                                 ),
-                                title: Text('Name $index'),
-                                subtitle: Text('Description $index'),
+                                title: Text(value.getAllKTPS()[index].nama),
+                                      subtitle: Text(value.getAllKTPS()[index].nik),
+                                      trailing: Text(
+                                                                    '${value.getWeekdayName(value.getAllKTPS()[index].dateTime)} ${value.getAllKTPS()[index].dateTime.day}/${value.getAllKTPS()[index].dateTime.month}/${value.getAllKTPS()[index].dateTime.year}'),
+                          
                                 onTap: () {
                                   Navigator.push(
                                     context,
-                                    MaterialPageRoute(builder: (context) => UserPage()),
+                                    MaterialPageRoute(
+                                      builder: (context) => UserPage(
+                                        data: value.getAllKTPS()[index],
+                                      ),
+                                    ),
                                   );
                                 },
                               ),
@@ -148,7 +157,8 @@ class UsersPage extends StatelessWidget {
           ),
         ),
       ),
-    bottomNavigationBar: const BottomNav(),
+    bottomNavigationBar: BottomNav(),
+    ),
     );
   }
 }
