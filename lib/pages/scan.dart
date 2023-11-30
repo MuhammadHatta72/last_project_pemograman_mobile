@@ -9,7 +9,7 @@ class ScanPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: false, // Menghapus tombol kembali
+        // automaticallyImplyLeading: false, // Menghapus tombol kembali
         backgroundColor: Color(0xFF79B3B7), // Warna latar belakang AppBar
         title: Row(
           children: [
