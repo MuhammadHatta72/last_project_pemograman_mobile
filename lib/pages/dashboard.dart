@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:last_project_pemograman_mobile/components/bottom_nav.dart';
-import 'package:last_project_pemograman_mobile/data/ktp_data.dart';
+import 'package:last_project_pemograman_mobile/data/ktm_data.dart';
 import 'package:last_project_pemograman_mobile/pages/user.dart';
 import 'package:provider/provider.dart';
 import '/pages/users.dart';
@@ -15,13 +15,13 @@ class DashboardPage extends StatefulWidget {
 class _DashboardPageState extends State<DashboardPage> {
   @override
   Widget build(BuildContext context) {
-    return Consumer<KTPData>(
+    return Consumer<KTMData>(
       builder: (context, value, child) => Scaffold(
-      backgroundColor: Color.fromARGB(255, 245, 245, 245), // Warna latar belakang body
+      backgroundColor: const Color.fromARGB(255, 245, 245, 245), // Warna latar belakang body
       appBar: AppBar(
         automaticallyImplyLeading: false, // Menghapus tombol kembali
-        backgroundColor: Color(0xFF79B3B7), // Warna latar belakang AppBar
-        title: Row(
+        backgroundColor: const Color(0xFF79B3B7), // Warna latar belakang AppBar
+        title: const Row(
           children: [
             Icon(
               Icons.home,
@@ -45,7 +45,7 @@ class _DashboardPageState extends State<DashboardPage> {
               elevation: 3,
               color: Colors.white,
               child: IconButton(
-                icon: Icon(
+                icon: const Icon(
                   Icons.notifications,
                   color: Color(0xFFF7C92B), // Warna ikon notifikasi kuning
                 ), // Icon notifikasi
@@ -57,58 +57,60 @@ class _DashboardPageState extends State<DashboardPage> {
           ),
         ],
       ),
-      body: Stack(
-        children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                decoration: BoxDecoration(
-                  color: Color(0xFF79B3B7), // Warna latar belakang
-                  borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(40.0),
-                    bottomRight: Radius.circular(40.0),
+      body: SingleChildScrollView(
+        // set scroll to false
+        physics: const NeverScrollableScrollPhysics(),
+        child: Stack(
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  decoration: const BoxDecoration(
+                    color: Color(0xFF79B3B7), // Warna latar belakang
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(40.0),
+                      bottomRight: Radius.circular(40.0),
+                    ),
+                  ),
+                  padding: const EdgeInsets.fromLTRB(20, 20, 20, 120),
+                  child: const Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          Text(
+                            'Hello Aido', // Tulisan Hello Aido
+                            style: TextStyle(
+                              fontSize: 24,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white, // Warna teks
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 10),
+                      Text(
+                        'Selamat Datang di Aplikasi Scan KTM', // Paragraf selamat datang
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: Colors.white, // Warna teks
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-                padding: EdgeInsets.fromLTRB(20, 20, 20, 120),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        Text(
-                          'Hello Aido', // Tulisan Hello Aido
-                          style: TextStyle(
-                            fontSize: 24,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white, // Warna teks
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 10),
-                    Text(
-                      'Selamat Datang di Aplikasi Scan KTP', // Paragraf selamat datang
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: Colors.white, // Warna teks
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-          Container(
-            child: Container(
-              margin: EdgeInsets.only(top: 280),
-              color: Color.fromARGB(255, 245, 245, 245), // Warna latar belakang body
+              ],
+            ),
+            Container(
+              margin: const EdgeInsets.only(top: 280),
+              color: const Color.fromARGB(255, 245, 245, 245), // Warna latar belakang body
               child: Column(
                 children: [
                   // Bagian "History"
                   Container(
-                    margin: EdgeInsets.fromLTRB(0, 20, 0, 0),
-                    decoration: BoxDecoration(
+                    margin: const EdgeInsets.fromLTRB(0, 20, 0, 0),
+                    decoration: const BoxDecoration(
                       borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(40.0),
                         topRight: Radius.circular(40.0),
@@ -118,11 +120,11 @@ class _DashboardPageState extends State<DashboardPage> {
                     child: Column(
                       children: [
                         Padding(
-                          padding: EdgeInsets.fromLTRB(20, 20, 20, 0),
+                          padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(
+                              const Text(
                                 'Recents',
                                 style: TextStyle(
                                   fontSize: 20,
@@ -130,7 +132,7 @@ class _DashboardPageState extends State<DashboardPage> {
                                 ),
                               ),
                               IconButton(
-                                icon: Icon(Icons.sort, color: Colors.black),
+                                icon: const Icon(Icons.sort, color: Colors.black),
                                 onPressed: () {
                                   // Aksi saat tombol sort by date ditekan
                                 },
@@ -138,15 +140,15 @@ class _DashboardPageState extends State<DashboardPage> {
                             ],
                           ),
                         ),
-                        SingleChildScrollView(
-                          child: SizedBox(
-                            height: 300,
+                        Container(
+                          margin: const EdgeInsets.fromLTRB(0, 20, 0, 0),
+                          child: SingleChildScrollView(
                             child: ListView.builder(
                               shrinkWrap: true,
-                              itemCount: value.getAllKTPS().length,
+                              itemCount: value.getAllKTMS().length,
                               itemBuilder: (context, index) {
                                 return Padding(
-                                  padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+                                  padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
                                   child: Card(
                                     elevation: 3,
                                     shape: RoundedRectangleBorder(
@@ -160,25 +162,28 @@ class _DashboardPageState extends State<DashboardPage> {
                                         decoration: BoxDecoration(
                                           borderRadius:
                                               BorderRadius.circular(8.0),
-                                          color: Color(
+                                          color: const Color(
                                               0xFFDAF6F7), // Warna latar belakang merah
-                                          image: DecorationImage(
+                                          image: const DecorationImage(
                                             image: AssetImage(
                                                 'assets/images/img-default.png'), // Ganti dengan gambar Anda
                                           ),
                                         ),
                                       ),
-                                      title: Text(value.getAllKTPS()[index].nama),
-                                      subtitle: Text(value.getAllKTPS()[index].nik),
+                                      title: Text(value.getAllKTMS()[index].nama),
+                                      subtitle: Text(value.getAllKTMS()[index].nim),
                                       trailing: Text(
-                                                                    '${value.getWeekdayName(value.getAllKTPS()[index].dateTime)} ${value.getAllKTPS()[index].dateTime.day}/${value.getAllKTPS()[index].dateTime.month}/${value.getAllKTPS()[index].dateTime.year}'),
-                          
+                                        value.getAllKTMS()[index].prodi,
+                                        style: const TextStyle(
+                                          color: Color(0xFF79B3B7), // Warna teks hijau
+                                        ),
+                                      ),
                                       onTap: () {
                                         Navigator.push(
                                           context,
                                           MaterialPageRoute(
                                               builder: (context) => UserPage(
-                                                    data: value.getAllKTPS()[index],
+                                                    data: value.getAllKTMS()[index],
                                                   )));
                                       },
                                     ),
@@ -194,92 +199,92 @@ class _DashboardPageState extends State<DashboardPage> {
                 ],
               ),
             ),
-          ),
-          Positioned(
-            top: 110, // Ubah sesuai keinginan Anda
-            left: 20,
-            right: 20,
-            child: Card(
-              elevation: 3,
-              color: Colors.white, // Background warna putih pada card
-              child: Padding(
-                padding: EdgeInsets.all(20.0),
-                child: Column(
-                  children: [
-                    const Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Column(
-                          children: [
-                            Text(
-                              '100', // Jumlah KTP
-                              style: TextStyle(fontSize: 18),
+            Positioned(
+              top: 110, // Ubah sesuai keinginan Anda
+              left: 20,
+              right: 20,
+              child: Card(
+                elevation: 3,
+                color: Colors.white, // Background warna putih pada card
+                child: Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Column(
+                    children: [
+                      const Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Column(
+                            children: [
+                              Text(
+                                '100', // Jumlah KTM
+                                style: TextStyle(fontSize: 18),
+                              ),
+                              SizedBox(height: 5),
+                              Text(
+                                'Jumlah KTM',
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                            ],
+                          ),
+                          Column(
+                            children: [
+                              Text(
+                                '80', // KTM masuk
+                                style: TextStyle(fontSize: 18),
+                              ),
+                              SizedBox(height: 5),
+                              Text(
+                                'KTM Masuk',
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                            ],
+                          ),
+                          Column(
+                            children: [
+                              Text(
+                                '20', // KTM keluar
+                                style: TextStyle(fontSize: 18),
+                              ),
+                              SizedBox(height: 5),
+                              Text(
+                                'KTM Keluar',
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 20),
+                      SizedBox(
+                        width: double.infinity,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const UsersPage()),
+                            );
+                          },
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: const Color(0xFFFF5C3D),
+                          ),
+                          child: const Text(
+                            'Daftar KTM',
+                            style: TextStyle(
+                              color: Colors.white, // Warna teks putih pada tombol
                             ),
-                            SizedBox(height: 5),
-                            Text(
-                              'Jumlah KTP',
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                          ],
-                        ),
-                        Column(
-                          children: [
-                            Text(
-                              '80', // KTP masuk
-                              style: TextStyle(fontSize: 18),
-                            ),
-                            SizedBox(height: 5),
-                            Text(
-                              'KTP Masuk',
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                          ],
-                        ),
-                        Column(
-                          children: [
-                            Text(
-                              '20', // KTP keluar
-                              style: TextStyle(fontSize: 18),
-                            ),
-                            SizedBox(height: 5),
-                            Text(
-                              'KTP Keluar',
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 20),
-                    SizedBox(
-                      width: double.infinity,
-                      child: ElevatedButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => UsersPage()),
-                          );
-                        },
-                        style: ElevatedButton.styleFrom(
-                          primary: Color(0xFFFF5C3D),
-                        ),
-                        child: Text(
-                          'Daftar KTP',
-                          style: TextStyle(
-                            color: Colors.white, // Warna teks putih pada tombol
                           ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
-      bottomNavigationBar: BottomNav(),
+      bottomNavigationBar: const BottomNav(),
     ),
     );
   }

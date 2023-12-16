@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:last_project_pemograman_mobile/components/bottom_nav.dart';
-import 'package:last_project_pemograman_mobile/models/ktps.dart';
-
+import 'package:last_project_pemograman_mobile/models/ktms.dart';
 
 class UserPage extends StatelessWidget {
-  final KTPs data;
+  final KTMs data;
   const UserPage({
     Key? key,
     required this.data,
@@ -106,11 +105,17 @@ class UserPage extends StatelessWidget {
                       ),
                     ),
                     SizedBox(
-                      height: 450,
+                      height: 700,
                       child: ListView(
                         children: [
+                          DetailUserItem(
+                              title: 'Alamat',
+                              content:
+                                  (data.alamat1 + data.alamat2 + data.alamat3)),
+                          DetailUserItem(title: 'NIM', content: data.nim),
                           DetailUserItem(title: 'Nama', content: data.nama),
-                          DetailUserItem(title: 'NIK', content: data.nik),
+                          DetailUserItem(title: 'TTL', content: data.ttl),
+                          DetailUserItem(title: 'Prodi', content: data.prodi),
                         ],
                       ),
                     ),
@@ -125,7 +130,6 @@ class UserPage extends StatelessWidget {
     );
   }
 }
-
 
 class DetailUserItem extends StatelessWidget {
   final String title;

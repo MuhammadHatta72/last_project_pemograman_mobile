@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:last_project_pemograman_mobile/data/ktp_data.dart';
+import 'package:last_project_pemograman_mobile/data/ktm_data.dart';
 import 'package:provider/provider.dart';
 import 'pages/welcome.dart';
 
@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (context) => KTPData(),
+      create: (context) => KTMData(),
       builder: (context, child) => MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Smart App',

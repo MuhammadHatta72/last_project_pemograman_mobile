@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:last_project_pemograman_mobile/components/bottom_nav.dart';
-import 'package:last_project_pemograman_mobile/data/ktp_data.dart';
+import 'package:last_project_pemograman_mobile/data/ktm_data.dart';
 import 'package:last_project_pemograman_mobile/pages/user.dart';
 import 'package:provider/provider.dart';
 
@@ -10,7 +10,7 @@ class UsersPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<KTPData>(
+    return Consumer<KTMData>(
       builder: (context, value, child) => Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false, // Menghapus tombol kembali
@@ -89,7 +89,7 @@ class UsersPage extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            'Daftar KTP',
+                            'Daftar KTM',
                             style: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
@@ -107,7 +107,7 @@ class UsersPage extends StatelessWidget {
                     SizedBox(
                       height: 450,
                       child: ListView.builder(
-                        itemCount: value.getAllKTPS().length,
+                        itemCount: value.getAllKTMS().length,
                         itemBuilder: (context, index) {
                           return Padding(
                             padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
@@ -129,17 +129,22 @@ class UsersPage extends StatelessWidget {
                                     ),
                                   ),
                                 ),
-                                title: Text(value.getAllKTPS()[index].nama),
-                                      subtitle: Text(value.getAllKTPS()[index].nik),
+                                title: Text(value.getAllKTMS()[index].nama),
+                                      subtitle: Text(value.getAllKTMS()[index].nim),
                                       trailing: Text(
-                                                                    '${value.getWeekdayName(value.getAllKTPS()[index].dateTime)} ${value.getAllKTPS()[index].dateTime.day}/${value.getAllKTPS()[index].dateTime.month}/${value.getAllKTPS()[index].dateTime.year}'),
+                                        value.getAllKTMS()[index].prodi,
+                                        style: TextStyle(
+                                          color: Color(0xFF79B3B7), // Warna teks hijau
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
                           
                                 onTap: () {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) => UserPage(
-                                        data: value.getAllKTPS()[index],
+                                        data: value.getAllKTMS()[index],
                                       ),
                                     ),
                                   );
