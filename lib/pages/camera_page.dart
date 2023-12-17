@@ -2,6 +2,7 @@ import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:last_project_pemograman_mobile/pages/preview_page.dart';
 
 
@@ -66,6 +67,27 @@ class _CameraPageState extends State<CameraPage> {
     }
   }
 
+  Future getImageFromGallery() async {
+    final _picker = ImagePicker();
+    try {
+      final XFile? pickedFile = await _picker.pickImage(source: ImageSource.gallery);
+      if (pickedFile != null) {
+        // Lakukan sesuatu dengan file gambar yang dipilih dari galeri
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (_) => PreviewPage(
+              picture: pickedFile,
+            ),
+          ),
+        );
+      }
+    } catch (e) {
+      debugPrint('Error occured while getting image from gallery: $e');
+    }
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -108,7 +130,18 @@ class _CameraPageState extends State<CameraPage> {
                   constraints: const BoxConstraints(),
                   icon: const Icon(Icons.circle, color: Colors.white),
                 )),
-                const Spacer(),
+                    Expanded(
+                      child: IconButton(
+                        onPressed: getImageFromGallery,
+                        iconSize: 30,
+                        padding: EdgeInsets.zero,
+                        icon: Icon(
+                          Icons.photo_library,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                    const Spacer(),
               ]),
             )),
       ]),

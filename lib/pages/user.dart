@@ -32,24 +32,24 @@ class UserPage extends StatelessWidget {
             ),
           ],
         ),
-        actions: [
-          Tooltip(
-            message: 'Notifikasi', // Informasi tambahan saat dihover
-            child: Card(
-              elevation: 3,
-              color: Colors.white,
-              child: IconButton(
-                icon: Icon(
-                  Icons.notifications,
-                  color: Color(0xFFF7C92B), // Warna ikon notifikasi kuning
-                ), // Icon notifikasi
-                onPressed: () {
-                  // Aksi saat icon notifikasi diklik
-                },
-              ),
-            ),
-          ),
-        ],
+        // actions: [
+        //   Tooltip(
+        //     message: 'Notifikasi', // Informasi tambahan saat dihover
+        //     child: Card(
+        //       elevation: 3,
+        //       color: Colors.white,
+        //       child: IconButton(
+        //         icon: Icon(
+        //           Icons.notifications,
+        //           color: Color(0xFFF7C92B), // Warna ikon notifikasi kuning
+        //         ), // Icon notifikasi
+        //         onPressed: () {
+        //           // Aksi saat icon notifikasi diklik
+        //         },
+        //       ),
+        //     ),
+        //   ),
+        // ],
       ),
       body: SingleChildScrollView(
         child: Container(
@@ -71,14 +71,17 @@ class UserPage extends StatelessWidget {
                   ),
                 ],
               ),
+
+              SizedBox(height: 20), // Spasi sebelum paragraf
+
               // Gambar User
-              Container(
-                width: double.infinity, // Lebar penuh
-                height: 300,
-                child: Image.asset(
-                  'assets/images/ktp-user.png', // Ganti dengan lokasi gambar Anda
-                ),
-              ),
+              // Container(
+              //   width: double.infinity, // Lebar penuh
+              //   height: 300,
+              //   child: Image.asset(
+              //     'assets/images/ktp-user.png', // Ganti dengan lokasi gambar Anda
+              //   ),
+              // ),
               Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.only(
@@ -89,33 +92,60 @@ class UserPage extends StatelessWidget {
                 ),
                 child: Column(
                   children: [
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(20, 22, 20, 0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
+                    Container(
+
+                      child: Column(
                         children: [
-                          Text(
-                            'Detail User',
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
+                          Padding(
+                            padding: EdgeInsets.fromLTRB(20, 20, 20, 0),
+                            child: Row(
+                              mainAxisAlignment:
+                              MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  'Detail User',
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                // IconButton(
+                                //   icon:
+                                //   Icon(Icons.sort, color: Colors.black),
+                                //   onPressed: () {
+                                //     // Aksi saat tombol sort by date ditekan
+                                //   },
+                                // ),
+                              ],
                             ),
                           ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(
-                      height: 700,
-                      child: ListView(
-                        children: [
-                          DetailUserItem(
-                              title: 'Alamat',
-                              content:
-                                  (data.alamat1 + data.alamat2 + data.alamat3)),
-                          DetailUserItem(title: 'NIM', content: data.nim),
-                          DetailUserItem(title: 'Nama', content: data.nama),
-                          DetailUserItem(title: 'TTL', content: data.ttl),
-                          DetailUserItem(title: 'Prodi', content: data.prodi),
+                          SizedBox(
+                            height: 500,
+                            child: ListView(
+                              children: [
+                                SizedBox(
+                                  width: double.infinity,
+                                  child: Padding(
+                                    padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 100.0),
+                                    child: Image.network(
+                                      'https://static-00.iconduck.com/assets.00/user-icon-2048x2048-ihoxz4vq.png',
+                                      width: 100, // Ubah lebar gambar sesuai kebutuhan Anda
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                ),
+                                DetailUserItem(title: 'Nama', content: data.nama),
+                                DetailUserItem(title: 'NIM', content: data.nim),
+                                DetailUserItem(title: 'TTL', content: data.ttl),
+                                DetailUserItem(title: 'Prodi', content: data.prodi),
+                                DetailUserItem(
+                                    title: 'Alamat',
+                                    content:
+                                    (data.alamat1 + data.alamat2 + data.alamat3)),
+                              ],
+                            ),
+                          ),
                         ],
                       ),
                     ),

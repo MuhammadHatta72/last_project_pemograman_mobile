@@ -21,8 +21,8 @@ class LoginPage extends StatelessWidget {
                 children: [
                   Image.asset(
                     'assets/images/img-login.png',
-                    width: 350,
-                    height: 350,
+                    width: 300,
+                    height: 300,
                   ),
                 ],
               ),
@@ -30,7 +30,7 @@ class LoginPage extends StatelessWidget {
               Text(
                 'Login',
                 style: TextStyle(
-                  fontSize: 44,
+                  fontSize: 38,
                   fontWeight: FontWeight.bold,
                   color: Color(0xFF79B3B7),
                 ),
@@ -57,6 +57,7 @@ class LoginPage extends StatelessWidget {
                     borderSide: BorderSide.none,
                   ),
                   prefixIcon: Icon(Icons.person),
+                  contentPadding: EdgeInsets.symmetric(vertical: 15.0),
                 ),
                 textAlign: TextAlign.left,
               ),
@@ -74,6 +75,7 @@ class LoginPage extends StatelessWidget {
                     borderSide: BorderSide.none,
                   ),
                   prefixIcon: Icon(Icons.lock),
+                  contentPadding: EdgeInsets.symmetric(vertical: 15.0),
                 ),
                 textAlign: TextAlign.left,
               ),
@@ -103,23 +105,23 @@ class LoginPage extends StatelessWidget {
               SizedBox(height: 10), // Spasi sebelum paragraf
 
               // Teks untuk pindah ke halaman register
-              Center(
-                child: GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => RegisterPage()),
-                    );
-                  },
-                  child: Text(
-                    'Have an account? Sign Up',
-                    style: TextStyle(
-                      color: Color(0xFF79B3B7),
-                      // decoration: TextDecoration.underline,
-                    ),
-                  ),
-                ),
-              ),
+              // Center(
+              //   child: GestureDetector(
+              //     onTap: () {
+              //       Navigator.push(
+              //         context,
+              //         MaterialPageRoute(builder: (context) => RegisterPage()),
+              //       );
+              //     },
+              //     child: Text(
+              //       'Have an account? Sign Up',
+              //       style: TextStyle(
+              //         color: Color(0xFF79B3B7),
+              //         // decoration: TextDecoration.underline,
+              //       ),
+              //     ),
+              //   ),
+              // ),
             ],
           ),
         ),

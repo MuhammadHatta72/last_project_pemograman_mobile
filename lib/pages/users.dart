@@ -43,25 +43,25 @@ class UsersPage extends StatelessWidget {
                       ),
                     ],
                   ),
-                  actions: [
-                    Tooltip(
-                      message: 'Notifikasi', // Informasi tambahan saat dihover
-                      child: Card(
-                        elevation: 3,
-                        color: Colors.white,
-                        child: IconButton(
-                          icon: Icon(
-                            Icons.notifications,
-                            color: Color(
-                                0xFFF7C92B), // Warna ikon notifikasi kuning
-                          ), // Icon notifikasi
-                          onPressed: () {
-                            // Aksi saat icon notifikasi diklik
-                          },
-                        ),
-                      ),
-                    ),
-                  ],
+                  // actions: [
+                  //   Tooltip(
+                  //     message: 'Notifikasi', // Informasi tambahan saat dihover
+                  //     child: Card(
+                  //       elevation: 3,
+                  //       color: Colors.white,
+                  //       child: IconButton(
+                  //         icon: Icon(
+                  //           Icons.notifications,
+                  //           color: Color(
+                  //               0xFFF7C92B), // Warna ikon notifikasi kuning
+                  //         ), // Icon notifikasi
+                  //         onPressed: () {
+                  //           // Aksi saat icon notifikasi diklik
+                  //         },
+                  //       ),
+                  //     ),
+                  //   ),
+                  // ],
                 ),
                 body: SingleChildScrollView(
                   physics: const NeverScrollableScrollPhysics(),
@@ -85,8 +85,7 @@ class UsersPage extends StatelessWidget {
                             ),
                           ],
                         ),
-                        SizedBox(height: 60),
-                        // Bagian "History"
+                        SizedBox(height: 20),
                         Container(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.only(
@@ -110,18 +109,18 @@ class UsersPage extends StatelessWidget {
                                         fontWeight: FontWeight.bold,
                                       ),
                                     ),
-                                    IconButton(
-                                      icon:
-                                          Icon(Icons.sort, color: Colors.black),
-                                      onPressed: () {
-                                        // Aksi saat tombol sort by date ditekan
-                                      },
-                                    ),
+                                    // IconButton(
+                                    //   icon:
+                                    //       Icon(Icons.sort, color: Colors.black),
+                                    //   onPressed: () {
+                                    //     // Aksi saat tombol sort by date ditekan
+                                    //   },
+                                    // ),
                                   ],
                                 ),
                               ),
                               SizedBox(
-                                height: 450,
+                                height: 500,
                                 child: ListView.builder(
                                   itemCount: value.getAllKTMS().length,
                                   itemBuilder: (context, index) {
@@ -140,35 +139,44 @@ class UsersPage extends StatelessWidget {
                                             width: 40,
                                             height: 40,
                                             decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(8.0),
-                                              color: Color(
-                                                  0xFFDAF6F7), // Warna latar belakang merah
-                                              image: DecorationImage(
-                                                image: AssetImage(
-                                                    'assets/images/img-default.png'), // Ganti dengan gambar Anda
+                                              borderRadius: BorderRadius.circular(8.0),
+                                              // color: Color(0xFFDAF6F7), // Warna latar belakang merah
+                                            ),
+                                            child: ClipRRect(
+                                              borderRadius: BorderRadius.circular(8.0),
+                                              child: Image.network(
+                                                'https://static-00.iconduck.com/assets.00/user-icon-2048x2048-ihoxz4vq.png',
+                                                width: 40,
+                                                height: 40,
+                                                fit: BoxFit.cover,
                                               ),
                                             ),
                                           ),
-                                          title: Text(
-                                              value.getAllKTMS()[index].nama),
-                                          subtitle: Text(
-                                              value.getAllKTMS()[index].nim),
-                                          trailing: Text(
-                                            value.getAllKTMS()[index].prodi,
-                                            style: TextStyle(
-                                              color: Color(
-                                                  0xFF79B3B7), // Warna teks hijau
-                                              fontWeight: FontWeight.bold,
-                                            ),
+                                          title: Text(value.getAllKTMS()[index].nama),
+                                          subtitle: Column(
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                value.getAllKTMS()[index].nim,
+                                                style: TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              ),
+                                              Text(
+                                                value.getAllKTMS()[index].prodi,
+                                                style: TextStyle(
+                                                  color: Color(0xFF79B3B7), // Warna teks hijau
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              ),
+                                            ],
                                           ),
                                           onTap: () {
                                             Navigator.push(
                                               context,
                                               MaterialPageRoute(
                                                 builder: (context) => UserPage(
-                                                  data:
-                                                      value.getAllKTMS()[index],
+                                                  data: value.getAllKTMS()[index],
                                                 ),
                                               ),
                                             );
@@ -179,6 +187,8 @@ class UsersPage extends StatelessWidget {
                                   },
                                 ),
                               ),
+
+
                             ],
                           ),
                         ),
