@@ -33,6 +33,7 @@ class _DashboardPageState extends State<DashboardPage> {
                 backgroundColor: const Color.fromARGB(
                     255, 245, 245, 245), // Warna latar belakang body
                 appBar: AppBar(
+                  toolbarHeight: kToolbarHeight + 1,
                   automaticallyImplyLeading: false, // Menghapus tombol kembali
                   backgroundColor:
                       const Color(0xFF79B3B7), // Warna latar belakang AppBar
@@ -118,122 +119,103 @@ class _DashboardPageState extends State<DashboardPage> {
                           ),
                         ],
                       ),
-                      Container(
-                        margin: const EdgeInsets.only(top: 280),
-                        color: const Color.fromARGB(
-                            255, 245, 245, 245), // Warna latar belakang body
-                        child: Column(
-                          children: [
-                            // Bagian "History"
-                            Container(
-                              margin: const EdgeInsets.fromLTRB(0, 20, 0, 0),
-                              decoration: const BoxDecoration(
-                                borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(40.0),
-                                  topRight: Radius.circular(40.0),
-                                ),
-                                color: Colors.white,
-                              ),
-                              child: Column(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.fromLTRB(
-                                        20, 20, 20, 0),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        const Text(
-                                          'Recents',
-                                          style: TextStyle(
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                        IconButton(
-                                          icon: const Icon(Icons.sort,
-                                              color: Colors.black),
-                                          onPressed: () {
-                                            // Aksi saat tombol sort by date ditekan
-                                          },
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  Container(
-                                    margin:
-                                        const EdgeInsets.fromLTRB(0, 20, 0, 0),
-                                    child: SingleChildScrollView(
-                                      child: ListView.builder(
-                                        shrinkWrap: true,
-                                        itemCount: value.getAllKTMS().length,
-                                        itemBuilder: (context, index) {
-                                          return Padding(
-                                            padding: const EdgeInsets.fromLTRB(
-                                                20, 0, 20, 0),
-                                            child: Card(
-                                              elevation: 3,
-                                              shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(10.0),
-                                              ),
-                                              child: ListTile(
-                                                tileColor: Colors.white,
-                                                leading: Container(
-                                                  width: 40,
-                                                  height: 40,
-                                                  decoration: BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            8.0),
-                                                    color: const Color(
-                                                        0xFFDAF6F7), // Warna latar belakang merah
-                                                    image:
-                                                        const DecorationImage(
-                                                      image: AssetImage(
-                                                          'assets/images/img-default.png'), // Ganti dengan gambar Anda
-                                                    ),
-                                                  ),
-                                                ),
-                                                title: Text(value
-                                                    .getAllKTMS()[index]
-                                                    .nama),
-                                                subtitle: Text(value
-                                                    .getAllKTMS()[index]
-                                                    .nim),
-                                                trailing: Text(
-                                                  value
-                                                      .getAllKTMS()[index]
-                                                      .prodi,
-                                                  style: const TextStyle(
-                                                    color: Color(
-                                                        0xFF79B3B7), // Warna teks hijau
-                                                  ),
-                                                ),
-                                                onTap: () {
-                                                  Navigator.push(
-                                                      context,
-                                                      MaterialPageRoute(
-                                                          builder: (context) =>
-                                                              UserPage(
-                                                                data: value
-                                                                        .getAllKTMS()[
-                                                                    index],
-                                                              )));
-                                                },
-                                              ),
-                                            ),
-                                          );
-                                        },
+                      // Bagian "History"
+                        Container(
+                          margin: EdgeInsets.only(top: 300),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(40.0),
+                              topRight: Radius.circular(40.0),
+                            ),
+                            color: Colors.white,
+                          ),
+                          child: Column(
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.fromLTRB(20, 20, 20, 0),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      'Daftar KTM',
+                                      style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold,
                                       ),
                                     ),
-                                  ),
-                                ],
+                                    IconButton(
+                                      icon:
+                                          Icon(Icons.sort, color: Colors.black),
+                                      onPressed: () {
+                                        // Aksi saat tombol sort by date ditekan
+                                      },
+                                    ),
+                                  ],
+                                ),
                               ),
-                            ),
-                          ],
+                              SizedBox(
+                                height: 450,
+                                child: ListView.builder(
+                                  itemCount: value.getAllKTMS().length,
+                                  itemBuilder: (context, index) {
+                                    return Padding(
+                                      padding:
+                                          EdgeInsets.fromLTRB(20, 0, 20, 0),
+                                      child: Card(
+                                        elevation: 3,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(10.0),
+                                        ),
+                                        child: ListTile(
+                                          tileColor: Colors.white,
+                                          leading: Container(
+                                            width: 40,
+                                            height: 40,
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(8.0),
+                                              color: Color(
+                                                  0xFFDAF6F7), // Warna latar belakang merah
+                                              image: DecorationImage(
+                                                image: AssetImage(
+                                                    'assets/images/img-default.png'), // Ganti dengan gambar Anda
+                                              ),
+                                            ),
+                                          ),
+                                          title: Text(
+                                              value.getAllKTMS()[index].nama),
+                                          subtitle: Text(
+                                              value.getAllKTMS()[index].nim),
+                                          trailing: Text(
+                                            value.getAllKTMS()[index].prodi,
+                                            style: TextStyle(
+                                              color: Color(
+                                                  0xFF79B3B7), // Warna teks hijau
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                          onTap: () {
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) => UserPage(
+                                                  data:
+                                                      value.getAllKTMS()[index],
+                                                ),
+                                              ),
+                                            );
+                                          },
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
                       Positioned(
                         top: 110, // Ubah sesuai keinginan Anda
                         left: 20,

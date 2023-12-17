@@ -1,6 +1,7 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:last_project_pemograman_mobile/pages/preview_page.dart';
 
 
@@ -39,10 +40,11 @@ class _CameraPageState extends State<CameraPage> {
     try {
       await _cameraController.setFlashMode(FlashMode.off);
       XFile picture = await _cameraController.takePicture();
+      // save the picture to gallery
       Navigator.push(
           context,
           MaterialPageRoute(
-              builder: (context) => PreviewPage(
+              builder: (_) => PreviewPage(
                     picture: picture,
                   )));
     } on CameraException catch (e) {
