@@ -141,7 +141,6 @@ class _CameraPageState extends State<CameraPage> {
                         ),
                       ),
                     ),
-                    const Spacer(),
               ]),
             )),
       ]),

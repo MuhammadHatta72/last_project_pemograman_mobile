@@ -32,19 +32,24 @@ class PreviewPage extends StatelessWidget {
   Future uploadRequest(XFile image) async {
     final url = Uri.parse('http://192.168.18.69:5000/read');
     var request = http.MultipartRequest('POST', url);
-    
-    http.MultipartFile multipartFile = await http.MultipartFile.fromPath('image_filefile', image.path); 
+
+    http.MultipartFile multipartFile =
+        await http.MultipartFile.fromPath('image_file', image.path);
     request.files.add(multipartFile);
-    final response = await request.send();
-    if (response.statusCode == 200) {
-      print('Upload success!');
-      showDialog(
-          context: context,
-          builder: (BuildContext context) {
-            return _createCupertinoAlertDialog(context);
-          });
-    } else {
-      print('Upload failed!');
+    try {
+      final response = await request.send();
+      if (response.statusCode == 200) {
+        print('Upload success!');
+        showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return _createCupertinoAlertDialog(context);
+            });
+      } else {
+        print('Upload failed!');
+      }
+    } catch (e) {
+      print(e);
     }
   }
 
