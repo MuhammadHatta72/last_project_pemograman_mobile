@@ -92,16 +92,13 @@ class UserPage extends StatelessWidget {
                 ),
                 child: Column(
                   children: [
-
                     Container(
-
                       child: Column(
                         children: [
                           Padding(
                             padding: EdgeInsets.fromLTRB(20, 20, 20, 0),
                             child: Row(
-                              mainAxisAlignment:
-                              MainAxisAlignment.spaceBetween,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
                                   'Detail User',
@@ -127,22 +124,28 @@ class UserPage extends StatelessWidget {
                                 SizedBox(
                                   width: double.infinity,
                                   child: Padding(
-                                    padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 100.0),
+                                    padding: EdgeInsets.symmetric(
+                                        vertical: 10.0, horizontal: 100.0),
                                     child: Image.network(
-                                      'https://static-00.iconduck.com/assets.00/user-icon-2048x2048-ihoxz4vq.png',
-                                      width: 100, // Ubah lebar gambar sesuai kebutuhan Anda
+                                      'http://192.168.18.69:5000/images/' +
+                                          data.nim +
+                                          '.jpg',
+                                      width: 100,
                                       fit: BoxFit.cover,
                                     ),
                                   ),
                                 ),
-                                DetailUserItem(title: 'Nama', content: data.nama),
+                                DetailUserItem(
+                                    title: 'Nama', content: data.nama),
                                 DetailUserItem(title: 'NIM', content: data.nim),
                                 DetailUserItem(title: 'TTL', content: data.ttl),
-                                DetailUserItem(title: 'Prodi', content: data.prodi),
+                                DetailUserItem(
+                                    title: 'Prodi', content: data.prodi),
                                 DetailUserItem(
                                     title: 'Alamat',
-                                    content:
-                                    (data.alamat1 + data.alamat2 + data.alamat3)),
+                                    content: (data.alamat1 +
+                                        data.alamat2 +
+                                        data.alamat3)),
                               ],
                             ),
                           ),

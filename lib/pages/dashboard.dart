@@ -180,11 +180,11 @@ class _DashboardPageState extends State<DashboardPage> {
                                             child: ClipRRect(
                                               borderRadius: BorderRadius.circular(8.0),
                                               child: Image.network(
-                                                'https://static-00.iconduck.com/assets.00/user-icon-2048x2048-ihoxz4vq.png',
+                                                'http://192.168.18.69:5000/images/${value.getAllKTMS()[index].nim}.jpg',
                                                 width: 40,
                                                 height: 40,
                                                 fit: BoxFit.cover,
-                                              ),
+                                              )
                                             ),
                                           ),
                                           title: Text(value.getAllKTMS()[index].nama),

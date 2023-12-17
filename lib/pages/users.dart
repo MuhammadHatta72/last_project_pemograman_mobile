@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:last_project_pemograman_mobile/components/bottom_nav.dart';
 import 'package:last_project_pemograman_mobile/data/ktm_data.dart';
 import 'package:last_project_pemograman_mobile/pages/user.dart';
@@ -128,13 +129,50 @@ class UsersPage extends StatelessWidget {
                               ),
                               SizedBox(
                                 height: 500,
-                                child: ListView.builder(
-                                  itemCount: value.getAllKTMS().length,
-                                  itemBuilder: (context, index) {
-                                    return Padding(
-                                      padding:
-                                          EdgeInsets.fromLTRB(20, 0, 20, 0),
-                                      child: Card(
+                                child: value.getAllKTMS().length != 0
+                                    ? ListView.builder(
+                                        itemCount: value.getAllKTMS().length,
+                                        itemBuilder: (context, index) {
+                                          return Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Slidable(
+                                              key: const ValueKey(0),
+                                              endActionPane: ActionPane(
+                                                dismissible: DismissiblePane(
+                                                    onDismissed: () {
+                                                  // we can able to perform to some action here
+                                                }),
+                                                motion: const DrawerMotion(),
+                                                children: [
+                                                  SlidableAction(
+                                                    autoClose: true,
+                                                    flex: 1,
+                                                    onPressed: (value) {
+
+                                                    },
+                                                    backgroundColor: Colors.red,
+                                                    foregroundColor:
+                                                        Colors.white,
+                                                    icon: Icons.delete,
+                                                    label: 'Delete',
+                                                  ),
+                                                  SlidableAction(
+                                                    autoClose: true,
+                                                    flex: 1,
+                                                    onPressed: (value) {
+                                                    
+                                                    },
+                                                    backgroundColor:
+                                                        Colors.blueAccent,
+                                                    foregroundColor:
+                                                        Colors.white,
+                                                    icon: Icons.edit,
+                                                    label: 'Edit',
+                                                  ),
+                                                ],
+                                              ),
+                                              child: 
+                                              Card(
                                         elevation: 3,
                                         shape: RoundedRectangleBorder(
                                           borderRadius:
@@ -151,12 +189,13 @@ class UsersPage extends StatelessWidget {
                                             ),
                                             child: ClipRRect(
                                               borderRadius: BorderRadius.circular(8.0),
-                                              child: Image.network(
-                                                'https://static-00.iconduck.com/assets.00/user-icon-2048x2048-ihoxz4vq.png',
+                                              child: 
+                                              Image.network(
+                                                'http://192.168.18.69:5000/images/${value.getAllKTMS()[index].nim}.jpg',
                                                 width: 40,
                                                 height: 40,
                                                 fit: BoxFit.cover,
-                                              ),
+                                              )
                                             ),
                                           ),
                                           title: Text(value.getAllKTMS()[index].nama),
@@ -188,14 +227,19 @@ class UsersPage extends StatelessWidget {
                                               ),
                                             );
                                           },
-                                        ),
+                                            ),
+                                              ),
+                                            ));
+                                        },
+                                      )
+                                    : const Center(
+                                        child: Text("Your List is Empty",
+                                            style: TextStyle(
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 18)),
                                       ),
-                                    );
-                                  },
-                                ),
                               ),
-
-
                             ],
                           ),
                         ),
