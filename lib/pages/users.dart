@@ -45,31 +45,31 @@ class UsersPage extends StatelessWidget {
                       ),
                     ],
                   ),
-                  actions: [
-                    Tooltip(
-                      message: 'Notifikasi', // Informasi tambahan saat dihover
-                      child: Card(
-                        elevation: 3,
-                        color: Colors.white,
-                        child: IconButton(
-                          icon: Icon(
-                            Icons.notifications,
-                            color: Color(
-                                0xFFF7C92B), // Warna ikon notifikasi kuning
-                          ), // Icon notifikasi
-                          onPressed: () {
-                            // redirect ke halaman ExampleSlidable
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => MySlider(),
-                              ),
-                            );
-                          },
-                        ),
-                      ),
-                    ),
-                  ],
+                  // actions: [
+                  //   Tooltip(
+                  //     message: 'Notifikasi', // Informasi tambahan saat dihover
+                  //     child: Card(
+                  //       elevation: 3,
+                  //       color: Colors.white,
+                  //       child: IconButton(
+                  //         icon: Icon(
+                  //           Icons.notifications,
+                  //           color: Color(
+                  //               0xFFF7C92B), // Warna ikon notifikasi kuning
+                  //         ), // Icon notifikasi
+                  //         onPressed: () {
+                  //           // redirect ke halaman ExampleSlidable
+                  //           Navigator.push(
+                  //             context,
+                  //             MaterialPageRoute(
+                  //               builder: (context) => MySlider(),
+                  //             ),
+                  //           );
+                  //         },
+                  //       ),
+                  //     ),
+                  //   ),
+                  // ],
                 ),
                 body: SingleChildScrollView(
                   physics: const NeverScrollableScrollPhysics(),
