@@ -4,6 +4,7 @@ import 'package:last_project_pemograman_mobile/components/bottom_nav.dart';
 import 'package:last_project_pemograman_mobile/config/config.dart';
 import 'package:last_project_pemograman_mobile/data/ktm_data.dart';
 import 'package:last_project_pemograman_mobile/pages/user.dart';
+import 'package:last_project_pemograman_mobile/pages/edit_user.dart';
 import 'package:provider/provider.dart';
 import 'package:last_project_pemograman_mobile/pages/myslider.dart';
 
@@ -137,19 +138,57 @@ class UsersPage extends StatelessWidget {
                                           return Padding(
                                             padding: const EdgeInsets.all(8.0),
                                             child: Slidable(
-                                              key: const ValueKey(0),
+                                              key: ValueKey<String>(value.getAllKTMS()[index].nim),
                                               endActionPane: ActionPane(
-                                                dismissible: DismissiblePane(
-                                                    onDismissed: () {
-                                                  // we can able to perform to some action here
-                                                }),
+                                                // dismissible: DismissiblePane(
+                                                //     onDismissed: () {
+                                                //   // we can able to perform to some action here
+                                                // }),
                                                 motion: const DrawerMotion(),
                                                 children: [
                                                   SlidableAction(
                                                     autoClose: true,
                                                     flex: 1,
                                                     onPressed: (value) {
+                                                      final ktmData = Provider.of<KTMData>(context, listen: false);
+                                                      showDialog(
+                                                        context: context,
+                                                        builder: (BuildContext context) {
+                                                          return AlertDialog(
+                                                            title: Text("Konfirmasi"),
+                                                            content: Text("Apakah Anda yakin ingin menghapus data ini?"),
+                                                            actions: <Widget>[
+                                                              TextButton(
+                                                                onPressed: () {
+                                                                  Navigator.of(context).pop();
+                                                                },
+                                                                child: Text('Batal'),
+                                                              ),
+                                                              TextButton(
+                                                                onPressed: () async {
+                                                                  final ktmData = Provider.of<KTMData>(context, listen: false);
+                                                                  // Lakukan aksi penghapusan data ke URL
+                                                                  final response = await http.delete(
+                                                                    'http://url-api-anda/${value.getAllKTMS()[index].nim}',
+                                                                    // Atur headers atau parameter lain jika diperlukan
+                                                                  );
 
+                                                                  if (response.statusCode == 200) {
+                                                                    // Berhasil menghapus data
+                                                                    // Lakukan sesuatu setelah penghapusan data berhasil
+                                                                  } else {
+                                                                    // Gagal menghapus data
+                                                                    // Lakukan sesuatu setelah penghapusan data gagal
+                                                                  }
+
+                                                                  Navigator.of(context).pop();
+                                                                },
+                                                                child: Text('Hapus'),
+                                                              ),
+                                                            ],
+                                                          );
+                                                        },
+                                                      );
                                                     },
                                                     backgroundColor: Colors.red,
                                                     foregroundColor:
@@ -161,7 +200,15 @@ class UsersPage extends StatelessWidget {
                                                     autoClose: true,
                                                     flex: 1,
                                                     onPressed: (value) {
-                                                    
+                                                      final ktmData = Provider.of<KTMData>(context, listen: false);
+                                                      Navigator.push(
+                                                        context,
+                                                        MaterialPageRoute(
+                                                          builder: (context) => EditUserPage(
+                                                            data: ktmData.getAllKTMS()[index],
+                                                          ),
+                                                        ),
+                                                      );
                                                     },
                                                     backgroundColor:
                                                         Colors.blueAccent,
