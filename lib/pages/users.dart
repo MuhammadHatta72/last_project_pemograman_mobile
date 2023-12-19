@@ -6,7 +6,8 @@ import 'package:last_project_pemograman_mobile/data/ktm_data.dart';
 import 'package:last_project_pemograman_mobile/pages/user.dart';
 import 'package:last_project_pemograman_mobile/pages/edit_user.dart';
 import 'package:provider/provider.dart';
-import 'package:last_project_pemograman_mobile/pages/myslider.dart';
+import 'package:http/http.dart' as http;
+
 
 class UsersPage extends StatelessWidget {
   const UsersPage({Key? key}) : super(key: key);
@@ -47,31 +48,6 @@ class UsersPage extends StatelessWidget {
                       ),
                     ],
                   ),
-                  // actions: [
-                  //   Tooltip(
-                  //     message: 'Notifikasi', // Informasi tambahan saat dihover
-                  //     child: Card(
-                  //       elevation: 3,
-                  //       color: Colors.white,
-                  //       child: IconButton(
-                  //         icon: Icon(
-                  //           Icons.notifications,
-                  //           color: Color(
-                  //               0xFFF7C92B), // Warna ikon notifikasi kuning
-                  //         ), // Icon notifikasi
-                  //         onPressed: () {
-                  //           // redirect ke halaman ExampleSlidable
-                  //           Navigator.push(
-                  //             context,
-                  //             MaterialPageRoute(
-                  //               builder: (context) => MySlider(),
-                  //             ),
-                  //           );
-                  //         },
-                  //       ),
-                  //     ),
-                  //   ),
-                  // ],
                 ),
                 body: SingleChildScrollView(
                   physics: const NeverScrollableScrollPhysics(),
@@ -169,19 +145,17 @@ class UsersPage extends StatelessWidget {
                                                                   final ktmData = Provider.of<KTMData>(context, listen: false);
                                                                   // Lakukan aksi penghapusan data ke URL
                                                                   final response = await http.delete(
-                                                                    'http://url-api-anda/${value.getAllKTMS()[index].nim}',
+                                                                    Uri.parse('${Config.BASE_URL}/delete/${ktmData.getAllKTMS()[index].nim}'),
                                                                     // Atur headers atau parameter lain jika diperlukan
-                                                                  );
-
-                                                                  if (response.statusCode == 200) {
-                                                                    // Berhasil menghapus data
-                                                                    // Lakukan sesuatu setelah penghapusan data berhasil
-                                                                  } else {
-                                                                    // Gagal menghapus data
-                                                                    // Lakukan sesuatu setelah penghapusan data gagal
-                                                                  }
-
-                                                                  Navigator.of(context).pop();
+                                                                  ).then((value) {
+                                                                    Navigator.of(context).pop();
+                                                                    Navigator.push(
+                                                                      context,
+                                                                      MaterialPageRoute(
+                                                                        builder: (context) => UsersPage(),
+                                                                      ),
+                                                                    );
+                                                                  });
                                                                 },
                                                                 child: Text('Hapus'),
                                                               ),

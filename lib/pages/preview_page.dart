@@ -13,47 +13,6 @@ class PreviewPage extends StatelessWidget {
 
   get context => null;
 
-  // alert
-  CupertinoAlertDialog _createCupertinoAlertDialog(BuildContext context) {
-    return CupertinoAlertDialog(
-      title: const Text('Upload Success'),
-      content: const Text('Your KTM has been uploaded'),
-      actions: [
-        CupertinoDialogAction(
-          child: const Text('OK'),
-          onPressed: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const UsersPage()));
-          },
-        ),
-      ],
-    );
-  }
-
-  Future uploadRequest(XFile image) async {
-    final url = Uri.parse('${Config.BASE_URL}/read');
-    var request = http.MultipartRequest('POST', url);
-
-    http.MultipartFile multipartFile =
-        await http.MultipartFile.fromPath('image_file', image.path);
-    request.files.add(multipartFile);
-    try {
-      final response = await request.send();
-      if (response.statusCode == 200) {
-        print('Upload success!');
-        showDialog(
-            context: context,
-            builder: (BuildContext context) {
-              return _createCupertinoAlertDialog(context);
-            });
-      } else {
-        print('Upload failed!');
-      }
-    } catch (e) {
-      print(e);
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -65,6 +24,7 @@ class PreviewPage extends StatelessWidget {
           Text(picture.name),
           const SizedBox(height: 24),
           ButtonBar(
+            alignment: MainAxisAlignment.center,
             children: [
               ElevatedButton(
                 onPressed: () {
@@ -73,8 +33,21 @@ class PreviewPage extends StatelessWidget {
                 child: const Text('Retake'),
               ),
               ElevatedButton(
-                onPressed: () {
-                  uploadRequest(picture);
+                onPressed: () async {
+                  final url = Uri.parse('${Config.BASE_URL}/read');
+                  var request = http.MultipartRequest('POST', url);
+
+                  http.MultipartFile multipartFile =
+                      await http.MultipartFile.fromPath(
+                          'image_file', picture.path);
+                  request.files.add(multipartFile);
+                  try {
+                    final response = await request.send().then((value) =>
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (_) => UsersPage())));
+                  } catch (e) {
+                    print(e);
+                  }
                   Navigator.pop(context);
                 },
                 child: const Text('Use Picture'),
