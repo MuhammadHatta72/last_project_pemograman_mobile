@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:last_project_pemograman_mobile/components/bottom_nav.dart';
+import 'package:last_project_pemograman_mobile/config/config.dart';
 import 'package:last_project_pemograman_mobile/models/ktms.dart';
 
 class UserPage extends StatelessWidget {
@@ -127,7 +128,7 @@ class UserPage extends StatelessWidget {
                                     padding: EdgeInsets.symmetric(
                                         vertical: 10.0, horizontal: 100.0),
                                     child: Image.network(
-                                      'http://192.168.18.69:5000/images/' +
+                                      '${Config.BASE_URL}/images/' +
                                           data.nim +
                                           '.jpg',
                                       width: 100,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:last_project_pemograman_mobile/components/bottom_nav.dart';
+import 'package:last_project_pemograman_mobile/config/config.dart';
 import 'package:last_project_pemograman_mobile/data/ktm_data.dart';
 import 'package:last_project_pemograman_mobile/pages/user.dart';
 import 'package:provider/provider.dart';
@@ -191,7 +192,7 @@ class UsersPage extends StatelessWidget {
                                               borderRadius: BorderRadius.circular(8.0),
                                               child: 
                                               Image.network(
-                                                'http://192.168.18.69:5000/images/${value.getAllKTMS()[index].nim}.jpg',
+                                                '${Config.BASE_URL}/images/${value.getAllKTMS()[index].nim}.jpg',
                                                 width: 40,
                                                 height: 40,
                                                 fit: BoxFit.cover,
