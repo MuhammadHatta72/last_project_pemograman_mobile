@@ -4,12 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:last_project_pemograman_mobile/models/ktms.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:last_project_pemograman_mobile/config/config.dart';
 
 class KTMData extends ChangeNotifier {
   List<KTMs> overallKTMs = [];
 
   Future<void> fetchKTMs() async {
-    final url = Uri.parse('http://192.168.18.69:5000/read');
+    final url = Uri.parse('${Config.BASE_URL}/read');
     try {
       final response = await http.get(url);
       final data = json.decode(response.body);

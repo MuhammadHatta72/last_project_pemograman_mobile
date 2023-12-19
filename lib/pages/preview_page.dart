@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:http/http.dart' as http;
+import 'package:last_project_pemograman_mobile/config/config.dart';
 import 'package:last_project_pemograman_mobile/pages/users.dart';
 
 class PreviewPage extends StatelessWidget {
@@ -30,7 +31,7 @@ class PreviewPage extends StatelessWidget {
   }
 
   Future uploadRequest(XFile image) async {
-    final url = Uri.parse('http://192.168.18.69:5000/read');
+    final url = Uri.parse('${Config.BASE_URL}/read');
     var request = http.MultipartRequest('POST', url);
 
     http.MultipartFile multipartFile =
